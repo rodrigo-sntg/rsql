@@ -6,11 +6,11 @@ Este projeto foi um estudo de b+ tree e o funcionamento de um banco de dados rel
 
 Com a utilização de b+ tree, a complexidade das operações são as seguintes:
 
-´´´
+```
 insert - O(log(n))
 delete - O(log(n))
 select - O(log(n))
-´´´
+```
 
 
 Atualmente conta apenas com operação insert e select, para executar basta seguir:
