@@ -619,7 +619,7 @@ void db_close(Table* table){
 
 
 // iniciando o event loop
-void print_prompt() { printf("db > "); }
+void print_prompt() { printf("rql > "); }
 
 // faz a leitura do input do usuario com o getline
 // void read_input(InputBuffer* input_buffer) {

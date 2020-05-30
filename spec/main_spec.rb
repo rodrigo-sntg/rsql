@@ -5,7 +5,7 @@ describe 'database' do
 
   def run_script(commands)
     raw_output = nil
-    IO.popen("./db test.db", "r+") do |pipe|
+    IO.popen("./rql test.db", "r+") do |pipe|
       commands.each do |command|
         begin
           pipe.puts command
@@ -30,10 +30,10 @@ describe 'database' do
     ])
     
     expect(result).to match_array([
-      "db > Executado.",
-      "db > (1, usuario, usuario@example.com)",
+      "rql > Executado.",
+      "rql > (1, usuario, usuario@example.com)",
       "Executado.",
-      "db > ",
+      "rql > ",
     ])
   end
 
@@ -43,17 +43,17 @@ describe 'database' do
       ".exit",
     ])
     expect(result1).to match_array([
-      "db > Executado.",
-      "db > ",
+      "rql > Executado.",
+      "rql > ",
     ])
     result2 = run_script([
       "select",
       ".exit",
     ])
     expect(result2).to match_array([
-      "db > (1, usuario, usuario@email.com)",
+      "rql > (1, usuario, usuario@email.com)",
       "Executado.",
-      "db > ",
+      "rql > ",
     ])
   end
 
@@ -64,8 +64,8 @@ describe 'database' do
     script << ".exit"
     result = run_script(script)
     expect(result.last(2)).to match_array([
-      "db > Executado.",
-      "db > Falta implementar a divisao de nodes internos",
+      "rql > Executado.",
+      "rql > Falta implementar a divisao de nodes internos",
     ])
   end
 
@@ -79,10 +79,10 @@ describe 'database' do
       ]
       result = run_script(script)
       expect(result).to match_array([
-        "db > Executado.",
-        "db > (1, #{long_username}, #{long_email})",
+        "rql > Executado.",
+        "rql > (1, #{long_username}, #{long_email})",
         "Executado.",
-        "db > ",
+        "rql > ",
       ])
   end
 
@@ -96,9 +96,9 @@ describe 'database' do
       ]
       result = run_script(script)
       expect(result).to match_array([
-        "db > String ultrapassa o tamanho maximo para o campo.",
-        "db > Executado.",
-        "db > ",
+        "rql > String ultrapassa o tamanho maximo para o campo.",
+        "rql > Executado.",
+        "rql > ",
       ])
   end
 
@@ -110,9 +110,9 @@ describe 'database' do
       ]
       result = run_script(script)
       expect(result).to match_array([
-        "db > ID tem que ser um inteiro positivo.",
-        "db > Executado.",
-        "db > ",
+        "rql > ID tem que ser um inteiro positivo.",
+        "rql > Executado.",
+        "rql > ",
       ])
   end
 
@@ -124,14 +124,14 @@ describe 'database' do
       result = run_script(script)
       
       expect(result).to match_array([
-          "db > Constantes:",
+          "rql > Constantes:",
           "ROW_SIZE: 293",
           "COMMON_NODE_HEADER_SIZE: 6",
           "LEAF_NODE_HEADER_SIZE: 14",
           "LEAF_NODE_CELL_SIZE: 297",
           "LEAF_NODE_SPACE_FOR_CELLS: 4082",
           "LEAF_NODE_MAX_CELLS: 13",
-          "db > ",
+          "rql > ",
       ])
   end
   it 'exibe a estrutura de um node da btree' do
@@ -144,15 +144,15 @@ describe 'database' do
       result = run_script(script)
   
       expect(result).to match_array([
-          "db > Executado.",
-          "db > Executado.",
-          "db > Executado.",
-          "db > Tree:",
+          "rql > Executado.",
+          "rql > Executado.",
+          "rql > Executado.",
+          "rql > Tree:",
           "- leaf (size 3)",
           "  - 1",
           "  - 2",
           "  - 3",
-          "db > "
+          "rql > "
       ])
   end
 
@@ -165,11 +165,11 @@ describe 'database' do
       ]
       result = run_script(script)
       expect(result).to match_array([
-        "db > Executado.",
-        "db > Erro: Chave duplicada.",
-        "db > (1, user1, person1@example.com)",
+        "rql > Executado.",
+        "rql > Erro: Chave duplicada.",
+        "rql > (1, user1, person1@example.com)",
         "Executado.",
-        "db > ",
+        "rql > ",
       ])
   end
 
@@ -183,7 +183,7 @@ describe 'database' do
       result = run_script(script)
   
       expect(result[14...(result.length)]).to match_array([
-        "db > Tree:",
+        "rql > Tree:",
         "- internal (size 1)",
         "  - leaf (size 7)",
         "    - 1",
@@ -202,8 +202,8 @@ describe 'database' do
         "    - 12",
         "    - 13",
         "    - 14",
-        "db > Executado.",
-        "db > ",
+        "rql > Executado.",
+        "rql > ",
       ])
     end
 end

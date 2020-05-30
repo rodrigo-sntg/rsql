@@ -1,1 +1,1 @@
-gcc -o ./db ./src/db.c
+gcc -o ./rql ./src/rql.c
