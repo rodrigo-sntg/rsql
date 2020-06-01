@@ -15,16 +15,16 @@ select - O(log(n))
 Atualmente conta apenas com operação insert e select, para executar basta seguir:
 
 ```
-./db teste.db
-db > insert 1 rodrigo rodrigo@email
+./rql teste.db
+rql > insert 1 rodrigo rodrigo@email
 Executado.
-db > select
+rql > select
 (1, rodrigo, rodrigo@email)
 Executado.
-db > .btree
+rql > .btree
 - leaf (size 1)
   - 1
-db > .constants
+rql > .constants
 Constantes:
 ROW_SIZE: 293
 COMMON_NODE_HEADER_SIZE: 6
